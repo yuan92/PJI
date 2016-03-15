@@ -22,41 +22,19 @@
 		  <input type="submit" value="Cherche" />
 		</form>
 	</div>
-	<?php
-		require_once("lib/conn.php");
-		if(empty($_POST['sexe'])){
-	    		$sql = "select from auteur";
-				//$result = mysql_query($sql);
-	    	}else if($_POST['sexe'] == 'tout'){
-	    		$sql = "select * from auteur";
-				//$result = mysql_query($sql);
-	    	}else if($_POST['sexe'] == 'masculine'){
-	    		$sql = "select * from auteur where sex = 'masculine'";
-				//$result = mysql_query($sql);
-	    	}else if($_POST['sexe'] == 'feminine'){
-	    		$sql = "select * from auteur where sex = 'feminine'";
-				//$result = mysql_query($sql);
-	    	}else{
-	    		$sql = "select * from auteur";
-				//$result = mysql_query($sql);
-	    	}
-	    	//下面主要为了让用户知道他搜索了什么性别
-	    	if(!empty($_POST['sexe']))
-	    	{
-	    		if($_POST['sexe']=='masculine'||$_POST['sexe']=='feminine'){
-	    		echo "Vous avez cherche touts les prenom ".$_POST['sexe']."!";
-	    		}
-	    	}
-			$result = mysql_query($sql);
-			while($row = mysql_fetch_assoc($result))
-			{
-				echo '<tr>';
-				echo '<td>'.$row['id'].'</td>';
-				echo '<td>'.$row['prenom'].'</td>';
-				echo '<td>'.$row['sexe'].'</td>';
-				echo '</tr>';
-			}
-	?>
+	<div style="width:300px;margin-top: 20px; margin-bottom: 20px;">
+		<form action="search.php" method="post">
+		  <span style="font-size:14px;">选择性别，选择ALL或不选默认为全部</span><br>
+		  <input type="radio" name="sexe" value="tout" /> All
+		  <input type="radio" name="sexe" value="masculine" /> Male
+		  <input type="radio" name="sexe" value="feminine" /> Female
+		  <br>
+		  <span style="font-size:14px;">搜索姓名,不输入则默认为不搜索姓名</span>
+		  <input type="text" name="prenom" placeholder="输入你想搜索的名字">
+		  <br>
+		  <input style="margin-top: 5px; margin-bottom: 5px;" type="submit" value="搜索" formtarget="_blank"/>
+		</form>
+	</div>
 	<div>
 		<table border="1" width="400">
 		  <tr>
