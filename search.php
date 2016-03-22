@@ -62,61 +62,39 @@
 	    		$prenom = $_POST['prenom'];
 	    	}
 	    	if($sexe!='' && $prenom!=''){
-	    		echo "<span>Vous avez cherche touts les auteurs qui s'appellent '".$prenom."' et de sexe '".$sexe."'</span>";
+	    		echo "<br><span>Vous avez cherche touts les auteurs qui s'appellent '".$prenom."' et de sexe '".$sexe."'</span>";
 	    		$sql = "select * from auteur where sexe = '".$sexe."' and prenom like '%".$prenom."%'" ;
-				$result = mysql_query($sql);
-				while($row = mysql_fetch_assoc($result))
-				{
-					echo '<tr>';
-					echo '<td class=k>'.$row['id'].'</td>';
-					echo '<td class=k>'.$row['prenom'].'</td>';
-					echo '<td class=k>'.$row['sexe'].'</td>';
-					echo "<td class=k><a target='_self' href='edit_sex.php?id=".$row['id']."'>choisir le sexe</a></td>";
-					echo '</tr>';
-				}
 	    	}else if($sexe=='' && $prenom!=''){
-	    		echo "<span>Vous avez cherche touts les auteurs qui s'appellent '".$prenom."'</span>";
-	    		$sql = "select * from auteur where prenom like '%".$prenom."%'";
-				$result = mysql_query($sql);
-				while($row = mysql_fetch_assoc($result))
-				{
-					echo '<tr>';
-					echo '<td class=k>'.$row['id'].'</td>';
-					echo '<td class=k>'.$row['prenom'].'</td>';
-					echo '<td class=k>'.$row['sexe'].'</td>';
-					echo "<td class=k><a target='_self' href='edit_sex.php?id=".$row['id']."'>choisir le sexe</a></td>";
-					echo '</tr>';
-				}
+	    		echo "<br><span>Vous avez cherche touts les auteurs qui s'appellent '".$prenom."'</span>";
+	    		$sql = "select * from auteur where prenom like '%".$prenom."%'";	
 	    	}else if($sexe!='' && $prenom==''){
-	    		echo "<span>Vous avez cherche touts les auteurs ".$sex."'</span>";
-	    		$sql = "select * from auteur where sexe = '".$sexe."'";
-				$result = mysql_query($sql);
-				while($row = mysql_fetch_assoc($result))
-				{
-					echo '<tr>';
-					echo '<td class=k>'.$row['id'].'</td>';
-					echo '<td class=k>'.$row['prenom'].'</td>';
-					echo '<td class=k>'.$row['sexe'].'</td>';
-					echo "<td class=k><a target='_self' href='edit_sex.php?id=".$row['id']."'>choisir le sexe</a></td>";
-					echo '</tr>';
-				}
+	    		echo "<br><span>Vous avez cherche touts les auteurs ".$sex."'</span>";
+	    		$sql = "select * from auteur where sexe = '".$sexe."'";		
 	    	}else{
 	    		//这种情况在前端js判断不让他发送到这边来比较好-_-
 	    		echo "Il n'y a pas de condition de recherche";
-	    		$sql = "select * from auteur";
-				$result = mysql_query($sql);
-				while($row = mysql_fetch_assoc($result))
-				{
-					echo '<tr>';
-					echo '<td class=k>'.$row['id'].'</td>';
-					echo '<td class=k>'.$row['prenom'].'</td>';
-					echo '<td class=k>'.$row['sexe'].'</td>';
-					echo "<td class=k><a target='_self' href='edit_sex.php?id=".$row['id']."'>choisir le sexe</a></td>";
-					echo '</tr>';
-				}
+	    		$sql = "select * from auteur";		
 	    	}
+			
+			$result = mysql_query($sql);
+			while($row = mysql_fetch_assoc($result))
+			{
+				echo '<br>';
+				echo '<tr>';
+				echo '<td class=k>'.$row['id'].'</td>';
+				echo '<td class=k>'.$row['prenom'].'</td>';
+				echo '<td class=k>'.$row['sexe'].'</td>';
+				echo '<td><input type=radio name=sexe value=feminine /> Feminine <input type=radio name=sexe value=masculine /> Masculine</td>';			
+				echo '</tr>';
+			}
 		?>
-		</table>	
+		</table>
+		<br>
+		<p>Vous pouvez tous changer</p>
+		<input type="radio" name="sexe" value="feminine" /> Feminine
+	    <input type="radio" name="sexe" value="masculine" /> Masculine
+		<br><br>	
+		<input type="submit" value="Soumettre" />
 	</div>
 </body>
 </html>
