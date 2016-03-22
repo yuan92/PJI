@@ -33,10 +33,9 @@
 	</script>
 </head>
 <body>
-
 	<a href='index.php' target='_self'>Retourne</a>
 	<div>	
-	<h1><div class=up onclick=show("a")>$prenom</h1><div onmouseover=high() onmouseout=low() id=a style="display:none">		
+	<h1><div class=up onclick=show("a")>Resultat</h1><div onmouseover=high() onmouseout=low() id=a style="display:none">		
 	<table border="1" width="400">
 			  <tr>
 			    <th width="150">N</th>
@@ -63,8 +62,8 @@
 	    		$prenom = $_POST['prenom'];
 	    	}
 	    	if($sexe!='' && $prenom!=''){
-	    		echo "<span>Vous avez cherche touts les auteurs qui s'appellent '".$prenom."'et de sexe'".$sexe."'</span>";
-	    		$sql = "select * from auteur where sexe = '".$sexe."' and prenom like '%".$prenom."%'";
+	    		echo "<span>Vous avez cherche touts les auteurs qui s'appellent '".$prenom."' et de sexe '".$sexe."'</span>";
+	    		$sql = "select * from auteur where sexe = '".$sexe."' and prenom like '%".$prenom."%'" ;
 				$result = mysql_query($sql);
 				while($row = mysql_fetch_assoc($result))
 				{
@@ -77,7 +76,7 @@
 				}
 	    	}else if($sexe=='' && $prenom!=''){
 	    		echo "<span>Vous avez cherche touts les auteurs qui s'appellent '".$prenom."'</span>";
-	    		$sql = "select * from auteur where prenom like = '%".$prenom."%'";
+	    		$sql = "select * from auteur where prenom like '%".$prenom."%'";
 				$result = mysql_query($sql);
 				while($row = mysql_fetch_assoc($result))
 				{

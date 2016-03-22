@@ -24,15 +24,15 @@
 	</div>
 	<div style="width:300px;margin-top: 20px; margin-bottom: 20px;">
 		<form action="search.php" method="post">
-		  <span style="font-size:14px;">选择性别，选择ALL或不选默认为全部</span><br>
+		  <span style="font-size:14px;">Choisir le sexe</span><br>
 		  <input type="radio" name="sexe" value="tout" /> All
-		  <input type="radio" name="sexe" value="masculine" /> Male
-		  <input type="radio" name="sexe" value="feminine" /> Female
+		  <input type="radio" name="sexe" value="masculine" /> Masculine
+		  <input type="radio" name="sexe" value="feminine" /> Feminine
 		  <br>
-		  <span style="font-size:14px;">搜索姓名,不输入则默认为不搜索姓名</span>
-		  <input type="text" name="prenom" placeholder="输入你想搜索的名字">
+		  <span style="font-size:14px;">Le prenom que vous voulez chercher</span>
+		  <input type="text" name="prenom" placeholder="Input le prenom">
 		  <br>
-		  <input style="margin-top: 5px; margin-bottom: 5px;" type="submit" value="搜索" formtarget="_blank"/>
+		  <input style="margin-top: 5px; margin-bottom: 5px;" type="submit" value="cherche" formtarget="_blank"/>
 		</form>
 	</div>
 	<div>
