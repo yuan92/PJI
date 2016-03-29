@@ -34,6 +34,7 @@
 </head>
 <body>
 	<div>
+	<form action="result.php" method="post">
 		<table border="1" width="400">
 		  <tr>
 		    <th>prenom</th>
@@ -50,16 +51,19 @@
 				echo '<tr>';
 				echo "<input type=hidden name=id[] value='".$row['id']."'>";
 				if($row['prenom']!=$x){
-					echo '<td>'.$row['prenom'].'</td>';
+					echo <<<EOT
+						<td><div class=up onclick=show("a")>a</td><div onmouseover=high() onmouseout=low() id=a style="display:none">
+EOT;
+					//echo '<td>'.$row['prenom'].'</td>';
 					echo '<td></td>';
-					echo "<td><input type=radio name=sexe".$row['id']." value=feminines /> F
-							  <input type=radio name=sexe".$row['id']." value=masculines /> M
+					echo "<td class=k><input type=radio name=sexe".$row['prenom']." value=feminine /> F
+							  <input type=radio name=sexe".$row['prenom']." value=masculine /> M
 						  </td>";
 					echo '<tr>';
-					echo '<td>'.$row['prenom'].'</td>';
+					echo '<td class=k>'.$row['prenom'].'</td>';
 					$x = $row['prenom'];
 				}else{
-					echo '<td>'.$row['prenom'].'</td>';
+					echo '<td class=k>'.$row['prenom'].'</td>';
 				}
 				echo '<td class=k>'.$row['sexe'].'</td>';
 				echo "<td><input type=radio name=sexe".$row['id']." value=feminine /> Feminine 
@@ -68,7 +72,10 @@
 				echo '</tr>';
 			}		
 	    ?>
+
 		</table>
+		<input style="margin-top: 5px; margin-bottom: 5px;" type="submit" value="Corriger" formtarget="_self"/>
+		</form>
 	</div> 
 	
 </body>
