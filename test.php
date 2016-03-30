@@ -45,24 +45,28 @@
 	    	require_once("lib/conn.php");
 	    	$sql = "select * from auteur order by prenom";
 			$result = mysql_query($sql);
+			//我是通过这个x，得到第一行
 			$x = "";
 			while($row = mysql_fetch_assoc($result))
 			{
 				echo '<tr>';
-				echo "<input type=hidden name=id[] value='".$row['id']."'>";
 				if($row['prenom']!=$x){
-					echo <<<EOT
-						<td><div class=up onclick=show("a")>a</td><div onmouseover=high() onmouseout=low() id=a style="display:none">
-EOT;
-					//echo '<td>'.$row['prenom'].'</td>';
+					$x = $row['prenom'];
+					//echo <<<EOT
+						//<td><div class=up onclick=show("a")>a</td><div onmouseover=high() onmouseout=low() id=a style="display:none">
+//EOT;
+					echo "<input type=hidden name=prenom[] value='".$row['prenom']."'>";
+					echo '<td>'.$x.'</td>';
 					echo '<td></td>';
+					//就是这儿可以修改所有
 					echo "<td class=k><input type=radio name=sexe".$row['prenom']." value=feminine /> F
 							  <input type=radio name=sexe".$row['prenom']." value=masculine /> M
 						  </td>";
 					echo '<tr>';
+					echo "<input type=hidden name=id[] value='".$row['id']."'>";
 					echo '<td class=k>'.$row['prenom'].'</td>';
-					$x = $row['prenom'];
 				}else{
+					echo "<input type=hidden name=id[] value='".$row['id']."'>";
 					echo '<td class=k>'.$row['prenom'].'</td>';
 				}
 				echo '<td class=k>'.$row['sexe'].'</td>';

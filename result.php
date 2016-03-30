@@ -14,7 +14,9 @@
 			$sexe = "sexe".$array_id[0];
 			for($i=0;$i<count($array_id);$i++){
 				$id = $array_id[$i];
+				//echo $id;
 				$sexe = 'sexe'.$id;
+				//echo $sexe ;
 				if(isset($_POST[$sexe])){
 					if($_POST[$sexe]=='masculine'||$_POST[$sexe]=='feminine'){
 						$sex = $_POST[$sexe];
@@ -28,8 +30,8 @@
 			$data_num_id = count($data_id);
 			if($data_num_id!=0){
 				for($j=0;$j<$data_num_id;$j++){
-					$id = $data[$j]['id'];
-					$sexe = $data[$j]['sexe'];
+					$id = $data_id[$j]['id'];
+					$sexe = $data_id[$j]['sexe'];
 					$sql = "update auteur set sexe = '".$sexe."' where id = ".$id;
 					if(mysql_query($sql)){
 						$flag_success_id++;
@@ -46,14 +48,16 @@
 		if(isset($_POST['prenom'])){
 			$data_prenom = array();
 			$array_prenom = $_POST['prenom'];
-			$sexes = "sexe".$array_prenom[0];
-			for($i=0;$i<count($array_prenom);$i++){
-				$prenom = $array_prenom[$i];
-				$sexes = 'sexe'.$id;
-				if(isset($_POST[$sexes])){
-					if($_POST[$sexes]=='masculine'||$_POST[$sexes]=='feminine'){
-						$sex = $_POST[$sexes];
-						$data_prenom[] = array('prenom'=>$prenom,'sexe'=>$sex);
+			$sexe2 = "sexe".$array_prenom[0];
+			for($m=0;$m<count($array_prenom);$m++){
+				$prenom = $array_prenom[$m];
+				//echo $prenom;
+				$sexe2 = 'sexe'.$prenom;
+				//echo $sexe2 ;
+				if(isset($_POST[$sexe2])){
+					if($_POST[$sexe2]=='masculine'||$_POST[$sexe2]=='feminine'){
+						$sex2 = $_POST[$sexe2];
+						$data_prenom[] = array('prenom'=>$prenom,'sexe'=>$sex2);
 					}
 				}
 			}
@@ -62,21 +66,22 @@
 			$array_fail = array();
 			$data_num_prenom = count($data_prenom);
 			if($data_num_prenom!=0){
-				for($j=0;$j<$data_num_prenom;$j++){
-					$prenom = $data[$j]['prenom'];
-					$sexe = $data[$j]['sexe'];
-					$sql = "update auteur set sexe = '".$sexe."' where prenom = ".$prenom;
+				for($n=0;$n<$data_num_prenom;$n++){
+					$prenom = $data_prenom[$n]['prenom'];
+					$sexe2 = $data_prenom[$n]['sexe'];
+					echo $prenom.$sexe2;
+					$sql = "update auteur set sexe = '".$sexe2."' where prenom like '%".$prenom."%'";
 					if(mysql_query($sql)){
-						$flag_success++;
+						$flag_success_prenom++;
 					}else{
-						$flag_fail++;
+						$flag_fail_prenom++;
 					}
 				}
-				echo "Il n'y a pas d";
-			}	
-			echo "Il n'y a pas de changement  <a href='test.php' target='_self'>retour</a>";
 			}
-		//echo "Vous avez corrige ".$flag_success_prenom.", echoue ".$flag_fail_prenom.",  <a href='test.php' target='_self'>retoure</a>";
+			echo "Il  changement  <a href='test.php' target='_self'>retour</a>".$flag_success_prenom.$flag_fail_prenom;
+		}else{
+			echo "Il n'y a pas de changement  <a href='test.php' target='_self'>retour</a>";
+		}
 	?>
 </body>
 </html>
